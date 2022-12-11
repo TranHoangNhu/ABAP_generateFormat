@@ -15,32 +15,32 @@ var objFinalText = {
 
 objFinalText.addInfo.push(`
 &*********************************************************************
-                    * OBJECT            :
-                    * TITLE             :
-                    * PRICE ID          :
-                    * REQUEST BY        :
-                    *&*********************************************************************&
-                    &                        MODIFICATION LOG
-                    &---------------------------------------------------------------------
-                    * Transport number  :
-                    * Modification ID   :
-                    * ABAPer            :
-                    * Date modified     :
-                    * FS version        :
-                    * Requested by      :
-                    * Description       :
-                    &---------------------------------------------------------------------
-                    *----------------------------------------------------------------------*
-                    *      I N I T I A L I Z A T I O N
-                    *----------------------------------------------------------------------*
-                    INITIALIZATION.
-                        PERFORM INIT.
-                    	PERFORM GET_DATA.
-                        REPORT ZMM_PG_ZMM13.
+* OBJECT            :
+* TITLE             :
+* PRICE ID          :
+* REQUEST BY        :
+*&*********************************************************************&
+&                        MODIFICATION LOG
+&---------------------------------------------------------------------
+* Transport number  :
+* Modification ID   :
+* ABAPer            :
+* Date modified     :
+* FS version        :
+* Requested by      :
+* Description       :
+&---------------------------------------------------------------------
+*----------------------------------------------------------------------*
+*      I N I T I A L I Z A T I O N
+*----------------------------------------------------------------------*
+INITIALIZATION.
+    PERFORM INIT.
+  PERFORM GET_DATA.
+    REPORT ZMM_PG_ZMM13.
 
-                        INCLUDE ZMM_PG_ZMM13_TOP.
+    INCLUDE ZMM_PG_ZMM13_TOP.
 
-                        INCLUDE ZMM_PG_ZMM13_F01.
+    INCLUDE ZMM_PG_ZMM13_F01.
 `);
 
 /* 
