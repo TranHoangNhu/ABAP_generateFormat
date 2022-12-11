@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./prism.css">
+</head>
+
+<body>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <!-- Name program -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Name
+                        program</span>
+                    <input type="text" class="form-control" placeholder="Program" aria-label="Program"
+                        aria-describedby="basic-addon1">
+                </div>
+
+                <!-- Button Copy -->
+                <button class="btn btn-success" onclick="buttonCopy()">Copy</button>
+                <hr />
+                <h4>Info program</h4>
+
+                <!-- Info -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="info"
+                        onclick="loadXMLDoc('Data/info.txt');">
+                    <label class="form-check-label" for="info">
+                        Add Info
+                    </label>
+                    <label class="btn btn-outline-light btn-sm">
+                        <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;" id="info_file"
+                            onclick="loadXMLDocFile('info_file');">
+                    </label>
+                </div>
+
+                <!-- Include -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="include"
+                        onclick="loadXMLDoc('Data/include.txt');">
+                    <label class="form-check-label" for="include">
+                        Add Include
+                    </label>
+                    <label class="btn btn-outline-light btn-sm">
+                        <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;" id="include_file"
+                            onclick="loadXMLDocFile('include_file');">
+                    </label>
+                </div>
+
+                <!-- Initialization -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="initialization"
+                        onclick="loadXMLDoc('Data/initialization.txt');">
+                    <label class="form-check-label" for="initialization">
+                        Add Initialization
+                    </label>
+                    <label class="btn btn-outline-light btn-sm">
+                        <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                            id="initialization_file" onclick="loadXMLDocFile('initialization_file');">
+                    </label>
+                </div>
+
+                <!-- Start of selection -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="start_of_selection"
+                        onclick="loadXMLDoc('Data/start_of_selection.txt');">
+                    <label class="form-check-label" for="start_of_selection">
+                        Add Start of selection
+                    </label>
+                    <label class="btn btn-outline-light btn-sm">
+                        <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                            id="start_of_selection_file" onclick="loadXMLDocFile('start_of_selection_file');">
+                    </label>
+                </div>
+
+                <hr />
+                <h4>Info perform</h4>
+
+                <!-- Get data -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="get_data"
+                        onclick="loadXMLDoc('Data/get_data.txt');">
+                    <label class="form-check-label" for="get_data">
+                        Add Get data
+                    </label>
+                    <label class="btn btn-outline-light btn-sm">
+                        <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                            id="get_data_file" onclick="loadXMLDocFile('get_data_file');">
+                    </label>
+                </div>
+
+                <!-- Process data -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="process_data"
+                        onclick="loadXMLDoc('Data/process_data.txt');">
+                    <label class="form-check-label" for="process_data">
+                        Add Process data
+                    </label>
+                    <label class="btn btn-outline-light btn-sm">
+                        <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                            id="process_data_file" onclick="loadXMLDocFile('process_data_file');">
+                    </label>
+                </div>
+
+                <!-- Display data -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="display_data"
+                        onclick="loadXMLDoc('Data/display_data.txt');">
+                    <label class="form-check-label" for="display_data">
+                        Add Display data
+                    </label>
+                    <label class="btn btn-outline-light btn-sm">
+                        <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                            id="display_data_file" onclick="loadXMLDocFile('display_data_file');">
+                    </label>
+                </div>
+
+            </div>
+            <div class="col-12 col-md-9">
+                <textarea id="text" style="width: 100%; height: 100%;"></textarea>
+                <!-- <pre><code class="language-ABAP"></code></pre> -->
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./xulyjs.js"></script>
+    <!-- <script type="text/javascript" src="./prism.js"></script> -->
+</body>
+
+</html>
