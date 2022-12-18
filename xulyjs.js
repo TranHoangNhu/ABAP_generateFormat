@@ -1,17 +1,31 @@
-async function getDataQueryParam(namefile) {
-  try {
-    let result = await axios({
-      url: `./data/${namefile}.txt`,
-      method: "GET",
-      responseType: "text",
-    });
-    let DatabyInput = result.data;
-    return DatabyInput;
-    // console.log(result.data.content);
-    // console.log(result.data.content.relatedProducts);
-  } catch (error) {
+// async function getDataQueryParam(namefile) {
+//   try {
+//     let result = await axios({
+//       url: `./data/${namefile}.txt`,
+//       method: "GET",
+//       responseType: "text",
+//     });
+//     let DatabyInput = result.data;
+//     return DatabyInput;
+//   } catch (error) {
+//     console.log("error: ", error);
+//   }
+// }
+function getDataQueryParam(namefile, array) {
+  var promise = axios({
+    url: `./data/${namefile}.txt`,
+    method: "GET",
+    responseType: "text",
+  });
+  //   Thành Công
+  promise.then(function (result) {
+    console.log("Kết Quả: ", result.data);
+    array[namefile].push(result.data);
+  });
+  //   Thất Bại
+  promise.catch(function (error) {
     console.log("error: ", error);
-  }
+  });
 }
 
 /* 
@@ -66,9 +80,7 @@ btn_generate.addEventListener("click", (event) => {
   );
   checkboxProgram.forEach((checkbox) => {
     let param = checkbox.value;
-    getDataQueryParam(param).then((result) => {
-      objFinalText[param].push(result);
-    });
+    getDataQueryParam(param, objFinalText);
   });
   checkboxPerform.forEach((checkbox) => {
     var param = checkbox.value;
@@ -76,7 +88,10 @@ btn_generate.addEventListener("click", (event) => {
     // objFinalText.include.push(param);
   });
   console.log(objFinalText);
-  // document.querySelector("#text").innerHTML = objFinalText.include;
+  var strFinalText = Object.values(objFinalText).toString();
+  var finalText = strFinalText.replace(/,/g, "\n");
+  console.log(finalText);
+  document.querySelector("#text").innerHTML = finalText;
 });
 
 function loadXMLDocFile(dỉr_file) {
