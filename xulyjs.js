@@ -11,6 +11,9 @@
 //     console.log("error: ", error);
 //   }
 // }
+
+
+// Call Api của thư viện axios (index.html line 132) để get data theo tên file và cấu trúc mảng
 function getDataQueryParam(namefile, array) {
   var promise = axios({
     url: `./data/${namefile}.txt`,
@@ -85,7 +88,7 @@ btn_generate.addEventListener("click", (event) => {
   checkboxPerform.forEach((checkbox) => {
     var param = checkbox.value;
     console.log(getDataQueryParam(param));
-    // objFinalText.include.push(param);
+    getDataQueryParam(param, objFinalText);
   });
   console.log(objFinalText);
   var strFinalText = Object.values(objFinalText).toString();
