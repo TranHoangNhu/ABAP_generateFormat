@@ -5,11 +5,10 @@ let finalText = new FinalText();
 
 window.getDataQueryParam = (namefile) => {
   var promise = axios({
-    url: `https://abap-generate-format.vercel.app/data/${namefile}.txt`,
+    url: `https://abap-generate-format.vercel.app/Data/${namefile}.txt`,
     method: "GET",
     responseType: "text",
   });
-  
   //   Thành Công
   promise.then(function (result) {
     console.log("Kết Quả: ", result.data);
