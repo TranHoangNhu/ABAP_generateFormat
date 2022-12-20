@@ -1,20 +1,9 @@
-// async function getDataQueryParam(namefile) {
-//   try {
-//     let result = await axios({
-//       url: `./data/${namefile}.txt`,
-//       method: "GET",
-//       responseType: "text",
-//     });
-//     let DatabyInput = result.data;
-//     return DatabyInput;
-//   } catch (error) {
-//     console.log("error: ", error);
-//   }
-// }
+import generateStore from "./localStorage.js";
+import { FinalText } from "./finalTextClass.js";
 
+let finalText = new FinalText();
 
-// Call Api của thư viện axios (index.html line 132) để get data theo tên file và cấu trúc mảng
-function getDataQueryParam(namefile, array) {
+window.getDataQueryParam = (namefile) => {
   var promise = axios({
     url: `./data/${namefile}.txt`,
     method: "GET",
@@ -23,14 +12,14 @@ function getDataQueryParam(namefile, array) {
   //   Thành Công
   promise.then(function (result) {
     console.log("Kết Quả: ", result.data);
-    array[namefile].push(result.data);
+    finalText[`${namefile}`].push(`${result.data}`);
+    generateStore.set(finalText);
   });
   //   Thất Bại
   promise.catch(function (error) {
     console.log("error: ", error);
   });
-}
-
+};
 /* 
   Biến object (objFinalText) thành chuỗi theo thứ tự để xử lý.
   var strFinalText = Object.values(objFinalText).toString();
@@ -65,16 +54,8 @@ function getDataQueryParam(namefile, array) {
 //   xhttp.send();
 // }
 const btn_generate = document.querySelector("#btn_generate");
+const btn_RenderTxt = document.querySelector("#btn_renderTxt");
 btn_generate.addEventListener("click", (event) => {
-  let objFinalText = {
-    include: [],
-    info: [],
-    initialization: [],
-    start_of_selection: [],
-    get_data: [],
-    process_data: [],
-    display_data: [],
-  };
   let checkboxProgram = document.querySelectorAll(
     'input[name="Info_program"]:checked'
   );
@@ -82,19 +63,35 @@ btn_generate.addEventListener("click", (event) => {
     'input[name="Info_perform"]:checked'
   );
   checkboxProgram.forEach((checkbox) => {
-    let param = checkbox.value;
-    getDataQueryParam(param, objFinalText);
+    let param1 = checkbox.value;
+    getDataQueryParam(param1);
+    // generateStore.set(objFinalText);
+    // Object.assign(objFinalText, textRender);
   });
   checkboxPerform.forEach((checkbox) => {
-    var param = checkbox.value;
-    console.log(getDataQueryParam(param));
-    getDataQueryParam(param, objFinalText);
+    let param2 = checkbox.value;
+    getDataQueryParam(param2);
+    // generateStore.set(objFinalText);
+    // Object.assign(objFinalText, textRender);
   });
-  console.log(objFinalText);
-  var strFinalText = Object.values(objFinalText).toString();
-  var finalText = strFinalText.replace(/,/g, "\n");
-  console.log(finalText);
-  document.querySelector("#text").innerHTML = finalText;
+});
+
+function renderTxtABAP() {
+  let finalText = generateStore.get() || [];
+  let strFinalText = Object.values(finalText).toString();
+  // console.log(strFinalText);
+  let renderFinalText = strFinalText.replace(/,/g, "\n");
+  // console.log(renderFinalText);
+  document.querySelector("#text").innerHTML = renderFinalText;
+}
+
+btn_RenderTxt.addEventListener("click", (event) => {
+  let finalText = generateStore.get() || [];
+  let strFinalText = Object.values(finalText).toString();
+  // console.log(strFinalText);
+  let renderFinalText = strFinalText.replace(/,/g, "\n");
+  // console.log(renderFinalText);
+  document.querySelector("#text").innerHTML = renderFinalText;
 });
 
 function loadXMLDocFile(dỉr_file) {
@@ -117,3 +114,9 @@ function buttonCopy() {
 
   navigator.clipboard.writeText(copyText.value);
 }
+
+window.onload = function () {
+  // Call Api của thư viện axios (index.html line 132) để get data theo tên file và cấu trúc mảng
+  generateStore.get();
+  renderTxtABAP();
+};
