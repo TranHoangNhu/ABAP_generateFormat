@@ -9,6 +9,7 @@ window.getDataQueryParam = (namefile) => {
     method: "GET",
     responseType: "text",
   });
+  
   //   Thành Công
   promise.then(function (result) {
     console.log("Kết Quả: ", result.data);
