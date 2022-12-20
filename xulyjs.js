@@ -5,7 +5,7 @@ let finalText = new FinalText();
 
 window.getDataQueryParam = (namefile) => {
   var promise = axios({
-    url: `./data/${namefile}.txt`,
+    url: `https://abap-generate-format.vercel.app/data/${namefile}.txt`,
     method: "GET",
     responseType: "text",
   });
