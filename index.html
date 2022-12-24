@@ -25,6 +25,7 @@
 
                 <!-- Button Copy -->
                 <button class="btn btn-success" onclick="buttonCopy()">Copy</button>
+                <input class="ms-3" type="checkbox" onClick="toggle(this)" /> <span class="fw-bold">Check All</span><br />
                 <hr />
                 <h4>Info program</h4>
 
@@ -126,9 +127,10 @@
             </div>
             <div class="col-12 col-md-9">
                 <textarea id="text" style="width: 100%; height: 100%;"></textarea>
-                <button class="btn btn-success mt-3 mx-2 float-end" id="btn_renderTxt">GENERATE IN
+                <button class="btn btn-danger mt-3 mx-2 float-end" onclick="clearValueTxt()"
+                    id="btn_clearTxt">Clear</button>
+                <button class="btn btn-success mt-3 mx-2 float-end" id="btn_generate">GENERATE IN
                     TEXTAREA</button>
-                <button class="btn btn-primary mt-3 mx-2 float-end" id="btn_generate">format & save checkbox</button>
             </div>
         </div>
     </div>

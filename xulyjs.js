@@ -1,6 +1,8 @@
-import generateStore from "./localStorage.js";
+// import generateStore from "./localStorage.js";
 import { FinalText } from "./finalTextClass.js";
 
+var isAllCheck = false;
+const txtRender = document.getElementById("text");
 let finalText = new FinalText();
 
 window.getDataQueryParam = (namefile) => {
@@ -12,8 +14,9 @@ window.getDataQueryParam = (namefile) => {
   //   Thành Công
   promise.then(function (result) {
     console.log("Kết Quả: ", result.data);
-    finalText[`${namefile}`].push(`${result.data}`);
-    generateStore.set(finalText);
+    finalText[`${namefile}`] = `${result.data}`;
+    // generateStore.set(finalText);
+    renderTxtABAP(finalText);
   });
   //   Thất Bại
   promise.catch(function (error) {
@@ -54,7 +57,6 @@ window.getDataQueryParam = (namefile) => {
 //   xhttp.send();
 // }
 const btn_generate = document.querySelector("#btn_generate");
-const btn_RenderTxt = document.querySelector("#btn_renderTxt");
 btn_generate.addEventListener("click", (event) => {
   let checkboxProgram = document.querySelectorAll(
     'input[name="Info_program"]:checked'
@@ -65,34 +67,26 @@ btn_generate.addEventListener("click", (event) => {
   checkboxProgram.forEach((checkbox) => {
     let param1 = checkbox.value;
     getDataQueryParam(param1);
-    // generateStore.set(objFinalText);
-    // Object.assign(objFinalText, textRender);
+    console.log(finalText);
   });
   checkboxPerform.forEach((checkbox) => {
     let param2 = checkbox.value;
     getDataQueryParam(param2);
-    // generateStore.set(objFinalText);
-    // Object.assign(objFinalText, textRender);
+    console.log(finalText);
   });
 });
 
-function renderTxtABAP() {
-  let finalText = generateStore.get() || [];
-  let strFinalText = Object.values(finalText).toString();
-  // console.log(strFinalText);
-  let renderFinalText = strFinalText.replace(/,/g, "\n");
+function renderTxtABAP(objText) {
+  // let strFinalText = Object.values(objText).filter((arr, index) => arr[index] !== '').join("\n");
+  let asArray = Object.entries(objText);
+  let filtered = asArray.filter(([key, value]) => value !== "");
+  let justStrings = Object.fromEntries(filtered);
+  let strFinalText = Object.values(justStrings).join("\n");
+  console.log(strFinalText);
+  // let renderFinalText = strFinalText.replace(/,/g, "\n");
   // console.log(renderFinalText);
-  document.querySelector("#text").innerHTML = renderFinalText;
+  document.querySelector("#text").innerHTML = strFinalText;
 }
-
-btn_RenderTxt.addEventListener("click", (event) => {
-  let finalText = generateStore.get() || [];
-  let strFinalText = Object.values(finalText).toString();
-  // console.log(strFinalText);
-  let renderFinalText = strFinalText.replace(/,/g, "\n");
-  // console.log(renderFinalText);
-  document.querySelector("#text").innerHTML = renderFinalText;
-});
 
 function loadXMLDocFile(dỉr_file) {
   var checkLoad = document.getElementById(dỉr_file);
@@ -114,9 +108,21 @@ function buttonCopy() {
 
   navigator.clipboard.writeText(copyText.value);
 }
-
-window.onload = function () {
-  // Call Api của thư viện axios (index.html line 132) để get data theo tên file và cấu trúc mảng
-  generateStore.get();
-  renderTxtABAP();
+window.clearValueTxt = () => {
+  txtRender.innerHTML = "";
+  finalText = new FinalText();
+};
+window.toggle = (source) => {
+  let checkboxes = document.querySelectorAll(
+    'input[name="Info_program"], input[name="Info_perform"]'
+  );
+  for (var i = 0, n = checkboxes.length; i < n; i++) {
+    if (isAllCheck == false) {
+      checkboxes[i].checked = "true";
+      checkboxes[i].checked = source.checked;
+    } else {
+      checkboxes[i].removeAttribute("checked");
+      //alert( "it is true" );
+    }
+  }
 };
