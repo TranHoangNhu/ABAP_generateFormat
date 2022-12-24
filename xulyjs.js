@@ -100,14 +100,12 @@ function loadXMLDocFile(dỉr_file) {
   });
 }
 
-function buttonCopy() {
-  var copyText = document.getElementById("text");
+window.buttonCopy = () => {
+  txtRender.select();
+  txtRender.setSelectionRange(0, 99999); // For mobile devices
 
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); // For mobile devices
-
-  navigator.clipboard.writeText(copyText.value);
-}
+  navigator.clipboard.writeText(txtRender.value);
+};
 window.clearValueTxt = () => {
   txtRender.innerHTML = "";
   finalText = new FinalText();
