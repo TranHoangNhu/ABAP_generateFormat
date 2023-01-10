@@ -91,17 +91,17 @@ btn_generate.addEventListener("click", (event) => {
   checkboxProgram.forEach((checkbox) => {
     let param1 = checkbox.value;
     getDataQueryParamTab1(param1);
-    console.log(finalTextTab1);
+    // console.log(finalTextTab1);
   });
   checkboxPerform.forEach((checkbox) => {
     let param2 = checkbox.value;
     getDataQueryParamTab1(param2);
-    console.log(finalTextTab1);
+    // console.log(finalTextTab1);
   });
   checkboxPerform2.forEach((checkbox) => {
     let param3 = checkbox.value;
     getDataQueryParamTab2(param3);
-    console.log(finalTextTab1);
+    // console.log(finalTextTab2);
   });
 });
 
@@ -112,10 +112,10 @@ function renderTxtABAP(objText) {
   let justStrings = Object.fromEntries(filtered);
   let strFinalText = Object.values(justStrings).join("\n");
   let custominput = document.querySelector("#custom_data_include");
-  if (custominput.value !== "") {
+  if (window.location.hash == "#item2" && custominput.value !== "") {
     strFinalText += `
     *&---------------------------------------------------------------------*
-    *& Form "chèn biến tại đây"
+    *& Form ${custominput.value}
     *&---------------------------------------------------------------------*
     *& text
     *&---------------------------------------------------------------------*
@@ -127,8 +127,7 @@ function renderTxtABAP(objText) {
     ENDFORM.
     `;
   }
-
-  // console.log(strFinalText);
+  console.log(strFinalText);
   // let renderFinalText = strFinalText.replace(/,/g, "\n");
   // console.log(renderFinalText);
   document.querySelector("#text").innerHTML = strFinalText;
