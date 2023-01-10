@@ -1,22 +1,43 @@
 // import generateStore from "./localStorage.js";
-import { FinalText } from "./finalTextClass.js";
+import { TabOneClass } from "./models/tabOneClass.js";
+import { TabTwoClass } from "./models/tabTwoClass.js";
 
 var isAllCheck = false;
 const txtRender = document.getElementById("text");
-let finalText = new FinalText();
+let finalTextTab1 = new TabOneClass();
+let finalTextTab2 = new TabTwoClass();
 
-window.getDataQueryParam = (namefile) => {
+window.getDataQueryParamTab1 = (namefile) => {
   var promise = axios({
-    url: `https://abap-generate-format.vercel.app/Data/${namefile}.txt`,
+    url: `./Data/${namefile}.txt`,
     method: "GET",
     responseType: "text",
   });
   //   Thành Công
   promise.then(function (result) {
     console.log("Kết Quả: ", result.data);
-    finalText[`${namefile}`] = `${result.data}`;
-    // generateStore.set(finalText);
-    renderTxtABAP(finalText);
+    finalTextTab1[`${namefile}`] = `${result.data}`;
+    // generateStore.set(finalTextTab1);
+    renderTxtABAP(finalTextTab1);
+  });
+  //   Thất Bại
+  promise.catch(function (error) {
+    console.log("error: ", error);
+  });
+};
+
+window.getDataQueryParamTab2 = (namefile) => {
+  var promise = axios({
+    url: `./Data/${namefile}.txt`,
+    method: "GET",
+    responseType: "text",
+  });
+  //   Thành Công
+  promise.then(function (result) {
+    console.log("Kết Quả: ", result.data);
+    finalTextTab2[`${namefile}`] = `${result.data}`;
+    // generateStore.set(finalTextTab2);
+    renderTxtABAP(finalTextTab2);
   });
   //   Thất Bại
   promise.catch(function (error) {
@@ -31,11 +52,11 @@ window.getDataQueryParam = (namefile) => {
 
 /*
   -Xử lý chuỗi của biến strFinalText: Bỏ tất cả dấu phẩy trong chuỗi thành \n xuống hàng 
-  var finalText = strFinalText.replace(/,/g, "\n");
+  var finalTextTab1 = strFinalText.replace(/,/g, "\n");
   
-  console.log(finalText);
+  console.log(finalTextTab1);
   
-  document.querySelector("#text").innerHTML = finalText;
+  document.querySelector("#text").innerHTML = finalTextTab1;
 */
 
 // function loadXMLDoc(dir) {
@@ -64,15 +85,23 @@ btn_generate.addEventListener("click", (event) => {
   let checkboxPerform = document.querySelectorAll(
     'input[name="Info_perform"]:checked'
   );
+  let checkboxPerform2 = document.querySelectorAll(
+    'input[name="Info_perform2"]:checked'
+  );
   checkboxProgram.forEach((checkbox) => {
     let param1 = checkbox.value;
-    getDataQueryParam(param1);
-    console.log(finalText);
+    getDataQueryParamTab1(param1);
+    console.log(finalTextTab1);
   });
   checkboxPerform.forEach((checkbox) => {
     let param2 = checkbox.value;
-    getDataQueryParam(param2);
-    console.log(finalText);
+    getDataQueryParamTab1(param2);
+    console.log(finalTextTab1);
+  });
+  checkboxPerform2.forEach((checkbox) => {
+    let param3 = checkbox.value;
+    getDataQueryParamTab2(param3);
+    console.log(finalTextTab1);
   });
 });
 
@@ -82,7 +111,24 @@ function renderTxtABAP(objText) {
   let filtered = asArray.filter(([key, value]) => value !== "");
   let justStrings = Object.fromEntries(filtered);
   let strFinalText = Object.values(justStrings).join("\n");
-  console.log(strFinalText);
+  let custominput = document.querySelector("#custom_data_include");
+  if (custominput.value !== "") {
+    strFinalText += `
+    *&---------------------------------------------------------------------*
+    *& Form "chèn biến tại đây"
+    *&---------------------------------------------------------------------*
+    *& text
+    *&---------------------------------------------------------------------*
+    *& -->  p1        text
+    *& <--  p2        text
+    *&---------------------------------------------------------------------*
+    FORM ${custominput.value}.
+      " Into code
+    ENDFORM.
+    `;
+  }
+
+  // console.log(strFinalText);
   // let renderFinalText = strFinalText.replace(/,/g, "\n");
   // console.log(renderFinalText);
   document.querySelector("#text").innerHTML = strFinalText;
@@ -108,11 +154,11 @@ window.buttonCopy = () => {
 };
 window.clearValueTxt = () => {
   txtRender.innerHTML = "";
-  finalText = new FinalText();
+  finalTextTab1 = new TabOneClass();
 };
 window.toggle = (source) => {
   let checkboxes = document.querySelectorAll(
-    'input[name="Info_program"], input[name="Info_perform"]'
+    'input[name="Info_program"], input[name="Info_perform"], input[name="Info_perform2"]'
   );
   for (var i = 0, n = checkboxes.length; i < n; i++) {
     if (isAllCheck == false) {

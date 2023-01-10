@@ -1,0 +1,69 @@
+<h4>Info perform</h4>
+
+                <!-- 
+                    call api get_data_include.txt
+                 -->
+                <!-- Get data include-->
+                <div class="form-check">
+                    <label class="form-check-label" for="get_data_include">
+                        <input class="form-check-input" type="checkbox" name="Info_perform2" value="get_data_include"
+                            id="get_data_include">
+                        Add Get data
+                    </label>
+                    <label class="btn btn-outline-light btn-sm">
+                        <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                            id="get_data_include_file" onclick="loadXMLDocFile('get_data_include_file');">
+                    </label>
+                </div>
+
+                <!-- 
+                    call api process_data_include.txt
+                 -->
+                <!-- Process data include-->
+                <div class="form-check">
+                    <label class="form-check-label" for="process_data_include">
+                        <input class="form-check-input" type="checkbox" name="Info_perform2" value="process_data_include"
+                            id="process_data_include">
+                        Add Process data
+                    </label>
+                    <label class="btn btn-outline-light btn-sm">
+                        <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                            id="process_data_include_file" onclick="loadXMLDocFile('process_data_include_file');">
+                    </label>
+                </div>
+
+                <!-- 
+                    call api display_data_include.txt
+                 -->
+                <!-- Display data include-->
+                <div class="form-check">
+                    <label class="form-check-label" for="display_data_include">
+                        <input class="form-check-input" type="checkbox" name="Info_perform2" value="display_data_include"
+                            id="display_data_include">
+                        Add Display data
+                    </label>
+                    <label class="btn btn-outline-light btn-sm">
+                        <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                            id="display_data_include_file" onclick="loadXMLDocFile('display_data_include_file');">
+                    </label>
+                </div>
+
+                <!-- 
+                    thay 2 param trong biến "formatForm" bằng value được nhập trong input text này
+                 -->
+                <div class="input-group my-3" style="padding-left: 0;">
+                    <label for="custom_data_include" class="fw-bold fs-5 w-100">Custom param</label>
+                    <input class="form-check-input w-100 py-3 rounded-3" type="text" name="Info_perform2"
+                        id="custom_data_include">
+                </div>
+
+                <!-- Custom-->
+                <!-- 
+                    XỬ LÝ CHUỖI GIÚP TÁCH BIẾN NGĂN CÁCH NHAU BỞI DẤU " - "
+                    VD: input -> "DATA_1 - DATA_2 - DATA_3" => CÓ 3 BIẾN DATA_1, DATA_2 và DATA_3.
+                 -->
+                <div class="form-check" style="padding-left: 0;">
+                    <label for="custom" class="mb-3 fw-bold fs-5">many param custom</label>
+                    <textarea id="custom" style="width: 100%; height:
+                            100px;"></textarea>
+                </div>

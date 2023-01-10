@@ -1,4 +1,4 @@
-export class FinalText {
+export class TabOneClass {
   constructor() {
     this.info = "";
     this.include = "";

@@ -1,0 +1,95 @@
+<h4>Info program</h4>
+                    <!-- Info -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="info">
+                            <!-- <input class="form-check-input" type="checkbox" value="" id="info"
+                            onclick="loadXMLDoc('info');"> -->
+                            <input class="form-check-input" type="checkbox" name="Info_program" value="info" id="info">
+                            Add Info
+                        </label>
+                        <label class="btn btn-outline-light btn-sm">
+                            <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                                id="info_file" onclick="loadXMLDocFile('info_file');">
+                        </label>
+                    </div>
+
+                    <!-- Include -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="include">
+                            <input class="form-check-input" type="checkbox" name="Info_program" value="include"
+                                id="include">
+                            Add Include
+                        </label>
+                        <label class="btn btn-outline-light btn-sm">
+                            <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                                id="include_file" onclick="loadXMLDocFile('include_file');">
+                        </label>
+                    </div>
+
+                    <!-- Initialization -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="initialization">
+                            <input class="form-check-input" type="checkbox" name="Info_program" value="initialization"
+                                id="initialization">
+                            Add Initialization
+                        </label>
+                        <label class="btn btn-outline-light btn-sm">
+                            <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                                id="initialization_file" onclick="loadXMLDocFile('initialization_file');">
+                        </label>
+                    </div>
+
+                    <!-- Start of selection -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="start_of_selection">
+                            <input class="form-check-input" type="checkbox" name="Info_program"
+                                value="start_of_selection" id="start_of_selection">
+                            Add Start of selection
+                        </label>
+                        <label class="btn btn-outline-light btn-sm">
+                            <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                                id="start_of_selection_file" onclick="loadXMLDocFile('start_of_selection_file');">
+                        </label>
+                    </div>
+
+                    <hr />
+                    <h4>Info perform</h4>
+
+                    <!-- Get data -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="get_data">
+                            <input class="form-check-input" type="checkbox" name="Info_perform" value="get_data"
+                                id="get_data">
+                            Add Get data
+                        </label>
+                        <label class="btn btn-outline-light btn-sm">
+                            <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                                id="get_data_file" onclick="loadXMLDocFile('get_data_file');">
+                        </label>
+                    </div>
+
+                    <!-- Process data -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="process_data">
+                            <input class="form-check-input" type="checkbox" name="Info_perform" value="process_data"
+                                id="process_data">
+                            Add Process data
+                        </label>
+                        <label class="btn btn-outline-light btn-sm">
+                            <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                                id="process_data_file" onclick="loadXMLDocFile('process_data_file');">
+                        </label>
+                    </div>
+
+                    <!-- Display data -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="display_data">
+                            <input class="form-check-input" type="checkbox" name="Info_perform" value="display_data"
+                                id="display_data">
+                            Add Display data
+                        </label>
+                        <label class="btn btn-outline-light btn-sm">
+                            <i class="fa fa-image"></i> Chọn tệp <input type="file" style="display: none;"
+                                id="display_data_file" onclick="loadXMLDocFile('display_data_file');">
+                        </label>
+                    </div>
