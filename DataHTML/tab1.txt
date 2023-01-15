@@ -2,7 +2,7 @@
                     thay 2 param trong biến "formatForm" bằng value được nhập trong input text này
                  -->
                 <div class="input-group my-3" style="padding-left: 0;">
-                    <label for="custom_data_include" class="fw-bold fs-5 w-100">param Include</label>
+                    <label for="custom_data_include" class="fw-bold fs-5 w-100">Parma Include</label>
                     <input class="form-check-input w-100 py-3 rounded-3" type="text" name="Info_perform2"
                         id="custom_data_include">
                 </div>

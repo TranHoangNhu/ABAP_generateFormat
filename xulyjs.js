@@ -23,9 +23,11 @@ window.getDataQueryParamTab1 = (namefile) => {
     let strThirdFirst = paramInclude.slice(0, 3);
     if (paramInclude) {
       finalTextTab1.include = ` 
-         INCLUDE ${strThirdFirst}_in_${paramInclude}_top.
+      REPORT ${strThirdFirst}_PG_${paramInclude}.
 
-         INCLUDE ${strThirdFirst}_in_${paramInclude}_f01.
+         INCLUDE ${strThirdFirst}_in_${paramInclude}_TOP.
+
+         INCLUDE ${strThirdFirst}_in_${paramInclude}_F01.
       `;
     }
     renderTxtABAP(finalTextTab1);

@@ -1,3 +1,5 @@
+REPORT [vui_long_nhap_bien].
+
 	INCLUDE [vui_long_nhap_bien].
 
 	INCLUDE [vui_long_nhap_bien].
