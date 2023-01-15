@@ -25,9 +25,9 @@ window.getDataQueryParamTab1 = (namefile) => {
       finalTextTab1.include = ` 
       REPORT ${strThirdFirst}_PG_${paramInclude}.
 
-         INCLUDE ${strThirdFirst}_in_${paramInclude}_TOP.
+         INCLUDE ${strThirdFirst}_IN_${paramInclude}_TOP.
 
-         INCLUDE ${strThirdFirst}_in_${paramInclude}_F01.
+         INCLUDE ${strThirdFirst}_IN_${paramInclude}_F01.
       `;
     }
     renderTxtABAP(finalTextTab1);
