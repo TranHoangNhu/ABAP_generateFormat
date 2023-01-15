@@ -17,7 +17,17 @@ window.getDataQueryParamTab1 = (namefile) => {
   promise.then(function (result) {
     console.log("Kết Quả: ", result.data);
     finalTextTab1[`${namefile}`] = `${result.data}`;
-    // generateStore.set(finalTextTab1);
+    let paramInclude = String(
+      document.querySelector("#custom_data_include").value
+    );
+    let strThirdFirst = paramInclude.slice(0, 3);
+    if (paramInclude) {
+      finalTextTab1.include = ` 
+         INCLUDE ${strThirdFirst}_in_${paramInclude}_top.
+
+         INCLUDE ${strThirdFirst}_in_${paramInclude}_f01.
+      `;
+    }
     renderTxtABAP(finalTextTab1);
   });
   //   Thất Bại
@@ -111,22 +121,22 @@ function renderTxtABAP(objText) {
   let filtered = asArray.filter(([key, value]) => value !== "");
   let justStrings = Object.fromEntries(filtered);
   let strFinalText = Object.values(justStrings).join("\n");
-  let custominput = document.querySelector("#custom_data_include");
-  if (window.location.hash == "#item2" && custominput.value !== "") {
-    strFinalText += `
-    *&---------------------------------------------------------------------*
-    *& Form ${custominput.value}
-    *&---------------------------------------------------------------------*
-    *& text
-    *&---------------------------------------------------------------------*
-    *& -->  p1        text
-    *& <--  p2        text
-    *&---------------------------------------------------------------------*
-    FORM ${custominput.value}.
-      " Into code
-    ENDFORM.
-    `;
-  }
+  // let custominput = document.querySelector("#custom_data_include");
+  // if (window.location.hash == "#item1" && custominput.value !== "") {
+  //   strFinalText += `
+  //   *&---------------------------------------------------------------------*
+  //   *& Form ${custominput.value}
+  //   *&---------------------------------------------------------------------*
+  //   *& text
+  //   *&---------------------------------------------------------------------*
+  //   *& -->  p1        text
+  //   *& <--  p2        text
+  //   *&---------------------------------------------------------------------*
+  //   FORM ${custominput.value}.
+  //     " Into code
+  //   ENDFORM.
+  //   `;
+  // }
   console.log(strFinalText);
   // let renderFinalText = strFinalText.replace(/,/g, "\n");
   // console.log(renderFinalText);
@@ -151,10 +161,13 @@ window.buttonCopy = () => {
 
   navigator.clipboard.writeText(txtRender.value);
 };
+// event toggle button clear
 window.clearValueTxt = () => {
   txtRender.innerHTML = "";
   finalTextTab1 = new TabOneClass();
+  finalTextTab2 = new TabTwoClass();
 };
+// event toggle check all
 window.toggle = (source) => {
   let checkboxes = document.querySelectorAll(
     'input[name="Info_program"], input[name="Info_perform"], input[name="Info_perform2"]'

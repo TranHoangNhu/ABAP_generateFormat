@@ -48,22 +48,4 @@
                     </label>
                 </div>
 
-                <!-- 
-                    thay 2 param trong biến "formatForm" bằng value được nhập trong input text này
-                 -->
-                <div class="input-group my-3" style="padding-left: 0;">
-                    <label for="custom_data_include" class="fw-bold fs-5 w-100">Custom param</label>
-                    <input class="form-check-input w-100 py-3 rounded-3" type="text" name="Info_perform2"
-                        id="custom_data_include">
-                </div>
-
-                <!-- Custom-->
-                <!-- 
-                    XỬ LÝ CHUỖI GIÚP TÁCH BIẾN NGĂN CÁCH NHAU BỞI DẤU " - "
-                    VD: input -> "DATA_1 - DATA_2 - DATA_3" => CÓ 3 BIẾN DATA_1, DATA_2 và DATA_3.
-                 -->
-                <div class="form-check" style="padding-left: 0;">
-                    <label for="custom" class="mb-3 fw-bold fs-5">many param custom</label>
-                    <textarea id="custom" style="width: 100%; height:
-                            100px;"></textarea>
-                </div>
+                

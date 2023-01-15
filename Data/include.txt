@@ -1,5 +1,3 @@
-REPORT ZMM_PG_ZMM13.
+	INCLUDE [vui_long_nhap_bien].
 
-	INCLUDE ZMM_PG_ZMM13_TOP.
-
-	INCLUDE ZMM_PG_ZMM13_F01.
+	INCLUDE [vui_long_nhap_bien].
